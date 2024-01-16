@@ -7,6 +7,8 @@ import jsxRender from './utils/jsxRender';
 import indexRouter from './routes/indexRouter';
 import apiRouter from './routes/apiRouter';
 import resLocals from './middlewares/resLocals';
+import homepageRouter from './routes/homepageRouter';
+import profilepageRouter from './routes/profilepageRouter';
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -22,7 +24,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(resLocals);
 
-app.use('/', indexRouter);
 app.use('/api', apiRouter);
+app.use('/', homepageRouter);
+app.use('/profilepage', profilepageRouter);
 
 app.listen(PORT, () => console.log(`App has started on port ${PORT}`));
