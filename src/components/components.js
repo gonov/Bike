@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
 =======
 import SignUpPage from './pages/SignUpPage';
+import LoginPage from './pages/LoginPage';
 >>>>>>> 519992c (singUpPagr)
 
 const components = {
@@ -15,6 +16,7 @@ const components = {
   ProfilePage,
 =======
   SignUpPage,
+  LoginPage,
 >>>>>>> 519992c (singUpPagr)
 };
 

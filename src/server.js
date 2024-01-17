@@ -8,12 +8,10 @@ import indexRouter from './routes/indexRouter';
 import oneTrackRouter from './routes/oneTrackRouter';
 import apiRouter from './routes/apiRouter';
 import resLocals from './middlewares/resLocals';
-<<<<<<< HEAD
 import homepageRouter from './routes/homepageRouter';
 import profilepageRouter from './routes/profilepageRouter';
-=======
 import authRouter from './routes/authRouter';
->>>>>>> 519992c (singUpPagr)
+import apiAuthRouter from './routes/apiAuthRouter';
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -33,11 +31,9 @@ app.use('/', indexRouter);
 app.use('/map', oneTrackRouter);
 
 app.use('/api', apiRouter);
-<<<<<<< HEAD
 app.use('/', homepageRouter);
 app.use('/profilepage', profilepageRouter);
-=======
 app.use('/auth', authRouter);
->>>>>>> 519992c (singUpPagr)
+app.use('/auth', apiAuthRouter);
 
 app.listen(PORT, () => console.log(`App has started on port ${PORT}`));
