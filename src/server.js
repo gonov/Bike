@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 import jsxRender from './utils/jsxRender';
 import indexRouter from './routes/indexRouter';
+import oneTrackRouter from './routes/oneTrackRouter';
 import apiRouter from './routes/apiRouter';
 import resLocals from './middlewares/resLocals';
 
@@ -23,6 +24,7 @@ app.use(cookieParser());
 app.use(resLocals);
 
 app.use('/', indexRouter);
+app.use('/map', oneTrackRouter);
 app.use('/api', apiRouter);
 
 app.listen(PORT, () => console.log(`App has started on port ${PORT}`));
