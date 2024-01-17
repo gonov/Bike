@@ -29,6 +29,6 @@ app.use('/', indexRouter);
 app.use('/map', oneTrackRouter);
 app.use('/api', apiRouter);
 app.use('/auth', authRouter);
-app.use('/auth', apiAuthRouter);
+app.use('api/auth', apiAuthRouter);
 
 app.listen(PORT, () => console.log(`App has started on port ${PORT}`));

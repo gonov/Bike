@@ -6,6 +6,7 @@ export default function SignUpPage() {
     e.preventDefault();
     try {
       const response = await axios.post('/api/auth/signup', Object.fromEntries(new FormData(e.target)));
+      console.log(response);
       if (response.status === 200) window.location = '/';
     } catch (error) {
       alert(error.response.data.message);
@@ -14,15 +15,15 @@ export default function SignUpPage() {
   return (
     <form onSubmit={submitHandler} className="container">
       <div className="mb-3">
-        <label htmlFor="exampleInputEmail1" className="form-label">
+        <label htmlFor="exampleInputName" className="form-label">
           Name
-          <input name="name" type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+          <input name="name" type="text" className="form-control" id="exampleInputName" />
         </label>
       </div>
       <div className="mb-3">
         <label htmlFor="exampleInputEmail1" className="form-label">
           Email address
-          <input name="email" type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+          <input name="email" type="email" className="form-control" id="exampleInputEmail1" />
         </label>
       </div>
       <div className="mb-3">
