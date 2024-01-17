@@ -34,6 +34,6 @@ app.use('/api', apiRouter);
 app.use('/', homepageRouter);
 app.use('/profilepage', profilepageRouter);
 app.use('/auth', authRouter);
-app.use('/auth', apiAuthRouter);
+app.use('api/auth', apiAuthRouter);
 
 app.listen(PORT, () => console.log(`App has started on port ${PORT}`));
