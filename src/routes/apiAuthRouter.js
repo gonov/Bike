@@ -15,6 +15,7 @@ router.post('/signup', async (req, res) => {
     where: { email },
     defaults: { name, password: await bcrypt.hash(password, 10) },
   });
+  
 
 
   if (!created) {
