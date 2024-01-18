@@ -8,5 +8,8 @@ router.get('/signup', (req, res) => {
 router.get('/login', (req, res) => {
   res.render('LoginPage');
 });
+router.get('/logout', (req, res) => {
+  res.clearCookie('accessToken').clearCookie('refreshToken').redirect('/')
+});
 
 export default router;
