@@ -13,6 +13,8 @@ import homepageRouter from './routes/homepageRouter';
 import profilepageRouter from './routes/profilepageRouter';
 // import { verifyAccessToken } from './middlewares/verifyTokens';
 import checkNoAuth from './middlewares/checkAuth';
+import addRouter from './routes/addRouter';
+
 
 
 
@@ -37,6 +39,9 @@ app.use('/api/auth', apiAuthRouter);
 app.use('/profile', profilepageRouter);
 app.use('/', homepageRouter);
 app.use('/auth', checkNoAuth, authRouter);
+app.use('/add', addRouter)
+
+
 
 
 app.listen(PORT, () => console.log(`App has started on port ${PORT}`));
