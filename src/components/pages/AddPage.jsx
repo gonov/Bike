@@ -6,17 +6,36 @@ export default function AddPage() {
         e.preventDefault();
 
         try {
-            const response = await axios.post('/add', Object.fromEntries(new FormData(e.target)))
+            const response = await axios.post('/api/add/track', Object.fromEntries(new FormData(e.target)))
             if (response.status === 200);
               alert(`Маршрут ${response.data.title} был успешно добавлен!`);
               setTimeout(() => {
-                window.location = '/profile';
+                window.location = '/';
               }, 500);
             } catch (error) {
                 alert(error.response.data.message);
             }
         
       };
+
+
+      // const submitHandler = async (e) => {
+      //   e.preventDefault();
+      //   // console.log('------>>>>>');
+      //   const formData = Object.fromEntries(new FormData(e.target));
+      //   const response = await fetch('/add', {
+      //     method: 'POST',
+      //     body: JSON.stringify(formData),
+      //     headers: { 'Content-Type': 'application/json' },
+      //   });
+      //   if (response.status === 200) {
+         
+      //       window.location.href = '/';
+        
+      //   }
+      // };
+
+
       return (
     
         <form onSubmit={submitHandler} className="container">

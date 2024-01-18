@@ -5,17 +5,18 @@ import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 import jsxRender from './utils/jsxRender';
 // import oneTrackRouter from './routes/oneTrackRouter';
-import apiRouter from './routes/apiRouter';
-import resLocals from './middlewares/resLocals';
-import authRouter from './routes/authRouter';
-import apiAuthRouter from './routes/apiAuthRouter';
-import homepageRouter from './routes/homepageRouter';
-import apiCommentRouter from './routes/apiCommentRouter';
-import profilepageRouter from './routes/profilepageRouter';
-// import { verifyAccessToken } from './middlewares/verifyTokens';
-import checkNoAuth from './middlewares/checkAuth';
-import addRouter from './routes/addRouter';
+import indexRouter from './routes/render/indexRouter';
 
+import authRouter from './routes/render/authRouter';
+import apiAuthRouter from './routes/api/apiAuthRouter';
+
+import apiAddRouter from './routes/api/apiAddRouter';
+import resLocals from './middlewares/resLocals';
+// import { verifyAccessToken } from './middlewares/verifyTokens';
+// import checkNoAuth from './middlewares/checkAuth';
+
+
+//  
 
 
 
@@ -33,15 +34,21 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(resLocals);
 
-// app.use('/', oneTrackRouter);
-app.use('/api', apiRouter);
+app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/api/add', apiAddRouter)
+
+
 app.use('/api/auth', apiAuthRouter);
-app.use('/profile', profilepageRouter);
-app.use('/', homepageRouter);
-app.use('/auth', checkNoAuth, authRouter);
-app.use('/add', addRouter)
-app.use('/api/comment', apiCommentRouter);
+
+// app.use('/api', apiRouter);
+// app.use('/auth', authRouter);
+
+// app.use('/profile', profilepageRouter);
+// app.use('/', homepageRouter);
+
+
+// app.use('/api/comment', apiCommentRouter);
 
 
 

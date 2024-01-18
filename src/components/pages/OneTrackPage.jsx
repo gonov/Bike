@@ -42,7 +42,7 @@ function OneTrackPage({ tracks, comments, ratings }) {
     e.preventDefault();
     // console.log('------>>>>>');
     const formData = Object.fromEntries(new FormData(e.target));
-    const response = await fetch('/api/comment', {
+    const response = await fetch('/api/add/comment', {
       method: 'POST',
       body: JSON.stringify({...formData, track_id: trackId }),
       headers: { 'Content-Type': 'application/json' },

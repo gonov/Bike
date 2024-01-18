@@ -1,14 +1,14 @@
 import { Router } from 'express';
 import bcrypt from 'bcrypt';
-import { User } from '../../db/models';
-import generateTokens from '../utils/generateTokens';
-import cookiesConfig from '../config/cookiesConfig';
+import { User } from '../../../db/models';
+import generateTokens from '../../utils/generateTokens';
+import cookiesConfig from '../../config/cookiesConfig';
 
 const router = Router();
 
 router.post('/signup', async (req, res) => {
   const { name, email, password } = req.body;
-  console.log(req.body, '111111111111111111');
+  // console.log(req.body, '111111111111111111');
   if (!(name && email && password)) {
     return res.status(400).json({ message: 'Все поля должны быть заполнены' });
   }
