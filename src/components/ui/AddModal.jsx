@@ -1,96 +1,38 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
-import axios from 'axios';
+import React from 'react'
 
-function ModalWindow({
-  modalContent, setShow, show, setAllCandidate,
-}) {
-  const [modalCondition, setUpdatedCondition] = useState(modalContent);
-
-  const handleChange = (e) => {
-    const { city, title, start, finish } = e.target;
-    setUpdatedCondition((prev) => ({
-      ...prev,
-      [city]: value,
-      [title]: value,
-      [start]: value,
-      [finish]: value,
-    }));
-  };
-
-  const handleSaveChanges = async () => {
-    try {
-      await axios.put(/api/edit/${updatedCandidate.id}, updatedCandidate);
-      setShow(false);
-      setAllCandidate((prev) => prev.map((oneprev) => (oneprev.id === updatedCandidate.id ? updatedCandidate : oneprev)));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+export default function AddModal({track}) {
   return (
-    <Modal show={show}>
-      <Modal.Header closeButton onClick={() => setShow(false)}>
-        <Modal.Title>Маршрут</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Form>
-        <Form.Group controlId="formInput1">
-            <Form.Label>Название маршрута</Form.Label>
-            <Form.Control
-              name="name"
-              type="text"
-              placeholder="Enter value for Title"
-              value={updatedCandidate.name}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="formInput1">
-            <Form.Label>Населенный пункт</Form.Label>
-            <Form.Control
-              name="name"
-              type="text"
-              placeholder="Enter value for Title"
-              value={updatedCandidate.name}
-              onChange={handleChange}
-            />
-          </Form.Group>
-
-          <Form.Group controlId="formInput2">
-            <Form.Label>Старт</Form.Label>
-            <Form.Control
-              name="age"
-              type="text"
-              placeholder="Enter value for images"
-              value={updatedCandidate.age}
-              onChange={handleChange}
-            />
-          </Form.Group>
-
-          <Form.Group controlId="formInput3">
-            <Form.Label>Финиш</Form.Label>
-            <Form.Control
-              name="img"
-              type="text"
-              placeholder="Enter value for images"
-              value={updatedCandidate.img}
-              onChange={handleChange}
-            />
-          </Form.Group>
-        </Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="danger" onClick={() => setShow(false)}>
-          Закрыть
-        </Button>
-        <Button variant="primary" onClick={handleSaveChanges}>
-          Сохранить
-        </Button>
-      </Modal.Footer>
-    </Modal>
-
-  );
+     <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h1 className="modal-title fs-5" id="staticBackdropLabel">Editing a route</h1>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+      </div>
+      <div className="modal-body">
+        <div className="input-group input-group-sm mb-3">
+          <span className="input-group-text" id="inputGroup-sizing-sm">Name: </span>
+          <input value={track?.title} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"/>
+        </div>
+        <div className="input-group input-group-sm mb-3">
+          <span className="input-group-text" id="inputGroup-sizing-sm">City: </span>
+          <input value={track?.city} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"/>
+        </div>
+        <div className="input-group input-group-sm mb-3">
+          <span className="input-group-text" id="inputGroup-sizing-sm">Start: </span>
+          <input value={track?.start} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"/>
+        </div>
+        <div className="input-group input-group-sm mb-3">
+          <span className="input-group-text" id="inputGroup-sizing-sm">Finish: </span>
+          <input value={track?.finish} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"/>
+        </div>
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" className="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+  )
 }
-
-export default ModalWindow;

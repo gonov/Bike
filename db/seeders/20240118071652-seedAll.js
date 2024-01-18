@@ -1,5 +1,4 @@
-
-
+const bcrypt = require('bcrypt')
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -7,7 +6,7 @@ module.exports = {
       await queryInterface.bulkInsert('Users', [{
         name: 'John Doe',
         email: 'husdgfise@yandex.ru',
-        password: "123",
+        password: await bcrypt.hash('123', 10)
       }], {});
 
       await queryInterface.bulkInsert('Tracks', [{
