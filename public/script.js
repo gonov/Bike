@@ -1,15 +1,23 @@
-function init() {
+
+
+ymaps.ready((tracks) => {
   const map = new ymaps.Map('map', {
     center: [55.70711175262821, 37.59748726002942],
     zoom: 17,
-    controls: ['routePanelControl'],
+    controls: ['routeButtonControl', tracks],
   });
-
-  let control = myMap.controls.get('routePanelControl')
 
   map.controls.remove('searchControl');
   map.controls.remove('trafficControl');
   map.controls.remove('typeSelector');
-}
 
-ymaps.ready(init);
+  const control = map.controls.get('routeButtonControl');
+  // const { track } = Track.findAll();
+  // Задание состояния для панели маршрутизации.
+  control.routePanel.state.set({
+  // Адрес начальной точки.
+    from: '123',
+    // Адрес конечной точки.
+    to: '123',
+  });
+});
