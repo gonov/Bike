@@ -20,7 +20,7 @@ export default function Layout({ children, initState }) {
         <title>Document</title>
       </head>
       <body>
-        <div id="root" className='layout'>{children}</div>
+        <div id="root">{children}</div>
       </body>
     </html>
   );

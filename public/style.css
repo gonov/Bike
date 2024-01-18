@@ -5,9 +5,7 @@
    
 }
 
-.layout {
-    background-color:gray;
-}
+
 
 [class*="copyrights-pane"] {
     display: none !important;
