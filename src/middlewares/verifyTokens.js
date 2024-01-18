@@ -1,33 +1,34 @@
 import jwt from 'jsonwebtoken';
+import 'dotenv/config';
 import generateTokens from '../utils/generateTokens';
 import cookiesConfig from '../config/cookiesConfig';
-import 'dotenv/config';
 
-export function verifyRefreshToken(req, res, next) {
+export const verifyRefreshToken = (req, res, next) => {
   try {
-    const currentRefreshToken = req.cookies.refreshToken;
-    const { user } = jwt.verify(currentRefreshToken, process.env.REFRESH_TOKEN_SECRET);
+    const { refreshToken } = req.cookies;
+    const { user } = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
 
-    const { accessToken, refreshToken } = generateTokens({ user });
     res.locals.user = user;
+
+    const { access, refresh } = generateTokens({ user });
+
     res
-      .cookie('accessToken', accessToken, cookiesConfig.access)
-      .cookie('refreshToken', refreshToken, cookiesConfig.refresh);
+      .cookie('accessToken', access, cookiesConfig.access)
+      .cookie('refreshToken', refresh, cookiesConfig.refresh);
 
-    next();
+    return next();
   } catch (error) {
-    console.log('Failed verification of the refresh token');
-    res.clearCookie('refreshToken').sendStatus(403);
+    return res.sendStatus(401);
   }
-}
+};
 
-export function verifyAccessToken(req, res, next) {
+export const verifyAccessToken = (req, res, next) => {
   try {
     const { accessToken } = req.cookies;
-    jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
-    next();
+    const { user } = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+    res.locals.user = user;
+    return next();
   } catch (error) {
-    console.log('Failed verification of the access token');
-    verifyRefreshToken(req, res, next);
+    return verifyRefreshToken(req, res, next);
   }
-}
+};

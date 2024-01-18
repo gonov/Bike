@@ -1,14 +1,15 @@
-import jwtConfig from './jwtConfig';
+const { default: jwtConfig } = require('./jwtConfig');
 
 const cookiesConfig = {
-  refresh: {
-    httpOnly: true,
-    maxAge: jwtConfig.refresh.expiresIn,
-  },
   access: {
     httpOnly: true,
     maxAge: jwtConfig.access.expiresIn,
   },
+  refresh: {
+    httpOnly: true,
+    maxAge: jwtConfig.refresh.expiresIn,
+  },
 };
 
 export default cookiesConfig;
+
