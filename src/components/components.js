@@ -3,6 +3,7 @@ import SignUpPage from './pages/SignUpPage';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
+import AddPage from './pages/AddPage';
 
 const components = {
 
@@ -11,6 +12,7 @@ const components = {
   LoginPage,
   HomePage,
   ProfilePage,
+  AddPage,
 };
 
 export default components;

@@ -27,9 +27,14 @@ export default function NavBar({ user }) {
               Карта
             </a>
             {(user && (
+              <> 
             <a className="nav-link" href="/profile">
               Профиль
             </a>
+            <a className="nav-link" href="/add">
+            Добавить маршрут
+          </a>
+              </>
             ))}
 
             {user ? null : (
