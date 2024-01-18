@@ -1,5 +1,5 @@
 import express from 'express';
-import {Track, Comment, Rating} from '../../../db/models'
+import {Track, Comment, Rating, User} from '../../../db/models'
 
 
 const router = express.Router();
@@ -14,9 +14,19 @@ router.get('/add', (req, res)=>{
     res.render('AddPage')
 })
 
-router.get('/profile', (req, res) => {
-    res.render('ProfilePage');
-  });
+router.get('/profile/:userId', async (req, res) => {
+  try {
+    const userData = await User.findAll({
+      where: {id:res.locals.user.id}
+    });
+    const trackData = await Track.findAll({
+      where: {id:res.locals.user.id}
+    });
+  res.render('ProfilePage', {trackData, userData});
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 router.get('/:track_id', async (req, res) => {
     console.log({reqparams: req.params})
