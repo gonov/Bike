@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import bcrypt from 'bcrypt';
 import { User } from '../../db/models';
+import generateTokens from '../utils/generateTokens';
+import cookiesConfig from '../config/cookiesConfig';
 
 const router = Router();
 
@@ -20,12 +22,21 @@ router.post('/signup', async (req, res) => {
 
   if (!created) {
     return res.status(403).json({
-      message: ' Такой пользователь уже существует',
+      message: ' Такой пользователь уже существует'
     });
   }
 
-  res.sendStatus(200);
+  const plainUser = user.get();
+  delete plainUser.password;
+
+  const { access, refresh } = generateTokens({ user: plainUser });
+
+  res
+    .cookie('accessToken', access, cookiesConfig.access)
+    .cookie('refreshToken', refresh, cookiesConfig.refresh)
+    .sendStatus(200);
 });
+
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -36,7 +47,20 @@ router.post('/login', async (req, res) => {
   if (!user) return res.status(403).json({ message: 'Пользователь не найден ' });
   const correctPass = await bcrypt.compare(password, user.password);
   if (!correctPass) return res.status(401).json({ message: 'Неверный пароль' });
-  res.sendStatus(200);
+  const plainUser = user.get();
+  delete plainUser.password;
+
+  const { access, refresh } = generateTokens({ user: plainUser });
+
+  res
+    .cookie('accessToken', access, cookiesConfig.access)
+    .cookie('refreshToken', refresh, cookiesConfig.refresh)
+    .sendStatus(200);
 });
+
+router.get('/logout', (req, res) => {
+  res.clearCookie('accessToken').clearCookie('refreshToken').sendStatus(200);
+});
+
 
 export default router;
