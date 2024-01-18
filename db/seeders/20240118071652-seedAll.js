@@ -15,6 +15,13 @@ module.exports = {
         title: 'BUTOVO',
         start: "Москва",
         finish: 'Воронеж',
+        user_id: 1
+      }], {});
+
+      await queryInterface.bulkInsert('Comments', [{
+        text: 'Хороший маршрут',
+        user_id: 1,
+        track_id: 1,
       }], {});
 
       
@@ -25,5 +32,6 @@ module.exports = {
     
       await queryInterface.bulkDelete('Users', null, {});
       await queryInterface.bulkDelete('Tracks', null, {});
+      await queryInterface.bulkDelete('Comments', null, {});
   }
 };
