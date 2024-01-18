@@ -5,7 +5,9 @@
    
 }
 
-
+.form-floating {
+    width: 300px;
+}
 
 [class*="copyrights-pane"] {
     display: none !important;

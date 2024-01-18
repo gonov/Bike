@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect} from 'react';
+
 import OneTrackCard from '../ui/OneTrackCard';
 
-function OneTrackPage({ tracks }) {
+function OneTrackPage({ tracks, comments, ratings }) {
+  console.log({comments})
+ 
   useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://api-maps.yandex.ru/2.1/?apikey=147df303-e99f-4bbb-b6c2-dc588fce9f73&lang=ru_RU';
@@ -34,14 +37,34 @@ function OneTrackPage({ tracks }) {
     };
   }, [tracks]);
 
+
+  const handleSubmit = async (e, trackId) => {
+    e.preventDefault();
+    // console.log('------>>>>>');
+    const formData = Object.fromEntries(new FormData(e.target));
+    const response = await fetch('/api/comment', {
+      method: 'POST',
+      body: JSON.stringify({...formData, track_id: trackId }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+    if (response.status === 200) {
+   
+        window.location.href = '/';
+     
+    }
+  };
+
+
   return (
-    <div className='containertrack'>
+    <div className='container'>
       <div className='track1'>
         {tracks?.map((track) => (
           <div key={track.id} className='row justify-content-center'>
             <div className='col-8'> 
-              <OneTrackCard track={track}/>
+              <OneTrackCard track={track} handleSubmit={handleSubmit} comments={comments}/>
+              
             </div>
+            
             <div id="map" className="map">
               {/* The map will be rendered here */}
             </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 
-export default function HomePage({tracks}) {
+export default function HomePage({tracks, user}) {
+  console.log({tracks})
   return (
     <div className='container'>
       home
@@ -12,8 +13,8 @@ export default function HomePage({tracks}) {
               {track?.img && <img src={track?.img} className="card-img-top" alt={track?.title} />}
               <div className="card-body">
                 <h5 className="card-title">
-                 <a href='/map'>{track?.title}</a> 
-                </h5>
+                 <a href={`/${track.id}`}>{track?.title}</a> 
+               </h5>
                 <p className="card-text">
                   City: {track?.city}
                 </p>
