@@ -11,9 +11,8 @@ export default function MapPage() {
               center: [55.70711175262821, 37.59748726002942],
               zoom: 17,
               controls: ['routePanelControl'],
-              
             });
-
+            
     
             // map.controls.remove('searchControl');
             // map.controls.remove('trafficControl');
