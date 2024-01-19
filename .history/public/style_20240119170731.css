@@ -6,12 +6,6 @@ body{
     background-attachment: fixed;
 }
 
-.card-img-top{
-
-    width: 220px;
-    height: 180px;
-}
-
 .card{
     background-color: rgba(255, 255, 255, 0.7);
 }

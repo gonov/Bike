@@ -32,7 +32,7 @@ module.exports = {
       }], {});
 
       await queryInterface.bulkInsert('Tracks', [{
-        img: "http://static.kremlin.ru/media/events/photos/big2x/uGUONxLCoIRDVz3M9hzodgk3LQs5ml5a.jpeg",
+        img: "/img/krakov.jpeg",
         city: 'Москва',
         title: 'Москва-Киев',
         start: "Москва",

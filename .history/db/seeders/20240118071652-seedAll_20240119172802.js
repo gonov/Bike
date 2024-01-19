@@ -32,15 +32,6 @@ module.exports = {
       }], {});
 
       await queryInterface.bulkInsert('Tracks', [{
-        img: "http://static.kremlin.ru/media/events/photos/big2x/uGUONxLCoIRDVz3M9hzodgk3LQs5ml5a.jpeg",
-        city: 'Москва',
-        title: 'Москва-Киев',
-        start: "Москва",
-        finish: 'Киев',
-        user_id: 1
-      }], {});
-
-      await queryInterface.bulkInsert('Tracks', [{
         img: "/img/lisboa.jpeg",
         city: 'Lisbon',
         title: 'Portuguese route',
@@ -101,7 +92,14 @@ module.exports = {
         user_id: 3
       }], {});
 
-    
+      await queryInterface.bulkInsert('Tracks', [{
+        img: "/img/krakov.jpeg",
+        city: 'Москва',
+        title: 'Москва-Киев',
+        start: "Stanisława Kostki Potockiego 10/16, 02-958 Warszawa, Польша",
+        finish: 'Zamek Wawel 5, 31-001 Kraków, Польша',
+        user_id: 3
+      }], {});
 
 
 

@@ -4,9 +4,9 @@ module.exports = {
   async up (queryInterface, Sequelize) {
   
       await queryInterface.bulkInsert('Users', [{
-        img: 'https://www.politico.eu/wp-content/uploads/2022/03/04/GettyImages-1002617260.jpg',
-        name: 'Владимир Путин',
-        email: 'putin@yandex.ru',
+        img: ''
+        name: 'John Doe',
+        email: 'husdgfise@yandex.ru',
         password: await bcrypt.hash('123', 10)
       }], {});
 
@@ -28,15 +28,6 @@ module.exports = {
         title: 'Moscow ride',
         start: "ул. Лужники, 24с11, Москва",
         finish: 'пр-т Мира, 119, Москва',
-        user_id: 1
-      }], {});
-
-      await queryInterface.bulkInsert('Tracks', [{
-        img: "http://static.kremlin.ru/media/events/photos/big2x/uGUONxLCoIRDVz3M9hzodgk3LQs5ml5a.jpeg",
-        city: 'Москва',
-        title: 'Москва-Киев',
-        start: "Москва",
-        finish: 'Киев',
         user_id: 1
       }], {});
 
@@ -100,8 +91,6 @@ module.exports = {
         finish: 'Zamek Wawel 5, 31-001 Kraków, Польша',
         user_id: 3
       }], {});
-
-    
 
 
 

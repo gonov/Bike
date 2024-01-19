@@ -31,14 +31,7 @@ module.exports = {
         user_id: 1
       }], {});
 
-      await queryInterface.bulkInsert('Tracks', [{
-        img: "http://static.kremlin.ru/media/events/photos/big2x/uGUONxLCoIRDVz3M9hzodgk3LQs5ml5a.jpeg",
-        city: 'Москва',
-        title: 'Москва-Киев',
-        start: "Москва",
-        finish: 'Киев',
-        user_id: 1
-      }], {});
+      
 
       await queryInterface.bulkInsert('Tracks', [{
         img: "/img/lisboa.jpeg",

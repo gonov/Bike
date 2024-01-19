@@ -24,7 +24,7 @@ export default function ProfilePage({trackData, userData}) {
                         <div className="card-body">
                           <p className="card-text"> Name: {user?.name}</p>
                           <p className="card-text"> Email: {user?.email}</p>
-                          <img src={user?.img} className="card-img-top" alt={user?.name} />
+                          <img src={track?.img} className="card-img-top" alt={track?.title} />
                         </div>
                     </div>
                   </div>
@@ -44,9 +44,7 @@ export default function ProfilePage({trackData, userData}) {
                       
                       {track?.img && <img src={track?.img} className="card-img-top" alt={track?.title} />}
                         <div className="card-body mt-3">
-                        <h5 className="card-title">
-                 <a href={`/tracks/${track.id}`}>{track?.title}</a> 
-               </h5>
+                          <p className="card-text m-0"> Name: {track?.title}</p>
                           <p className="card-text  m-0"> City: {track?.city}</p>
                           <p className="card-text  m-0"> Start: {track?.start}</p>
                           <p className="card-text  m-0"> Finish: {track?.finish}</p>
