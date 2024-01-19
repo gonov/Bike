@@ -4,7 +4,8 @@ import React, { useEffect, useState} from 'react';
 import OneTrackCard from '../ui/OneTrackCard';
 
 function OneTrackPage({ tracks, comments, ratings }) {
-  const [comment, setComment] = useState(null)
+  const [comment, setComment] = useState(comments)
+  const [rating, setRating] = useState(ratings)
  
   useEffect(() => {
     const script = document.createElement('script');
@@ -49,11 +50,26 @@ function OneTrackPage({ tracks, comments, ratings }) {
       headers: { 'Content-Type': 'application/json' },
     });
     if (response.status === 200) {
-   
-        window.location.href = `/tracks/${trackId}`;
+      const rate = await response.json()
+         setComment(prev =>[...prev, rate])
+         e.target.reset()
+  }
+  }
+  const submitHandler = async (e, trackId) => {
+    // e.preventDefault();
+     console.log('------>>>>>', e.target);
+    // const formData = Object.fromEntries(new FormData(e.target));
+    const response = await fetch('/api/add/rating', {
+      method: 'POST',
+      body: JSON.stringify({point: e.target.value, track_id: trackId }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+    if (response.status === 200) {
+   const rate = await response.json()
+      setRating(rate.point)
      
     }
-  };
+  }
 
 
   return (
@@ -62,7 +78,15 @@ function OneTrackPage({ tracks, comments, ratings }) {
         {tracks?.map((track) => (
           <div key={track.id} className='row justify-content-center'>
             <div className='col-8'> 
-              <OneTrackCard const track={track} handleSubmit={handleSubmit} comments={comments}/>
+              <OneTrackCard const
+               track={track} 
+               rating={rating} 
+               setRating={setRating} 
+               submitHandler={submitHandler} 
+               handleSubmit={handleSubmit} 
+               comment={comment} 
+               setComment={setComment}
+               />
               
             </div>
             
