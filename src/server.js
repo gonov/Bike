@@ -13,7 +13,7 @@ import apiAuthRouter from './routes/api/apiAuthRouter';
 import apiAddRouter from './routes/api/apiAddRouter';
 import resLocals from './middlewares/resLocals';
 // import { verifyAccessToken } from './middlewares/verifyTokens';
-// import checkNoAuth from './middlewares/checkAuth';
+import checkNoAuth from './middlewares/checkAuth';
 
 
 //  
@@ -35,7 +35,7 @@ app.use(cookieParser());
 app.use(resLocals);
 
 app.use('/', indexRouter);
-app.use('/auth', authRouter);
+app.use('/auth', checkNoAuth, authRouter);
 app.use('/api/add', apiAddRouter)
 
 

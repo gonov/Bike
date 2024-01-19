@@ -1,6 +1,17 @@
 import React from 'react';
+import axios from 'axios';
 
 export default function NavBar({ user }) {
+  const logoutHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.get('/api/auth/logout');
+      if (response.status === 200) window.location = '/';
+    } catch (error) {
+      alert(error.response.data.message);
+    }
+  };
   return (
     <nav
       className="navbar navbar-expand bg-body-tertiary"
@@ -48,7 +59,7 @@ export default function NavBar({ user }) {
               </>
             )}
             {user && (
-              <a className="nav-link" href="/auth/logout">
+              <a className="nav-link" onClick={logoutHandler}>
                 Выйти
               </a>
             )}

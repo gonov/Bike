@@ -28,7 +28,7 @@ router.get('/profile/:userId', async (req, res) => {
   }
 });
 
-router.get('/:track_id', async (req, res) => {
+router.get('/tracks/:track_id', async (req, res) => {
     console.log({reqparams: req.params})
     const tracks = await Track.findAll({ where: { id: req.params.track_id }});
     const comments = await Comment.findAll({where: { track_id: req.params.track_id }})
