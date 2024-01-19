@@ -4,6 +4,7 @@ import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
 import AddPage from './pages/AddPage';
+import MapPage from './pages/MapPage';
 
 const components = {
 
@@ -13,6 +14,7 @@ const components = {
   HomePage,
   ProfilePage,
   AddPage,
+  MapPage,
 };
 
 export default components;

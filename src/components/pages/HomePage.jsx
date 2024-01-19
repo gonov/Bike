@@ -7,7 +7,7 @@ export default function HomePage({tracks, user}) {
 
   useEffect(() => {
     const time = setTimeout(() => {
-      axios(`/api/tracks/search?filter=${input}`).then(({ data }) => setAllTracks(data));
+      axios(`/tracks/search?filter=${input}`).then(({ data }) => setAllTracks(data));
     }, 800);
 
     return () => {
@@ -15,17 +15,17 @@ export default function HomePage({tracks, user}) {
     };
   }, [input]);
 
-  const submitHandler = async (event) => {
-    event.preventDefault();
-    const response = await fetch('/api/dolphins', {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify(input),
-    });
-    const data = await response.json();
-    setAllTracks((prev) => [data, ...prev]);
-    setInput({ name: '', img: '' });
-  };
+  // const submitHandler = async (event) => {
+  //   event.preventDefault();
+  //   const response = await fetch('/api/dolphins', {
+  //     method: 'POST',
+  //     headers: { 'Content-type': 'application/json' },
+  //     body: JSON.stringify(input),
+  //   });
+  //   const data = await response.json();
+  //   setAllTracks((prev) => [data, ...prev]);
+  //   setInput({ name: '', img: '' });
+  // };
 
 
   const changeHandler = (e) => {
@@ -42,8 +42,8 @@ export default function HomePage({tracks, user}) {
 
 <br />
       home
-      <form onSubmit={(event) => submitHandler(event)}>
-      {tracks?.map((track) => (
+      <form >
+      {allTracks?.map((track) => (
         <div key={track.id} className='row justify-content-center'>
           <div className='col-8'> 
             <div className="card">

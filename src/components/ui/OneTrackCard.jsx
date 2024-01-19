@@ -1,10 +1,12 @@
 import React, {useState} from 'react'
 import {FaStar} from 'react-icons/fa';
 
-export default function OneTrackCard({track, comments, handleSubmit}) {
-  const [rating, setRating] = useState(null)
+export default function OneTrackCard({track, rating, setRating, comment, submitHandler, handleSubmit}) {
   const [hover, setHover] = useState(null)
+
+  console.log({rating})
   
+
 
 
     return (
@@ -24,40 +26,37 @@ export default function OneTrackCard({track, comments, handleSubmit}) {
               Finish: {track?.finish}
             </p>
             <div>
-              Comments: {comments?.map((comment) => (
-                  <div key={comment.track_id} className='row justify-content-center'>
-                    <div>{comment.text}</div>
+              Comments: {comment?.map((c) => (
+                  <div key={c.track_id} className='row justify-content-center'>
+                    <div>{c.text}</div>
                   </div>
                 ))}
             </div>
             <p className="card-text">
               user_id: {track?.user_id}
             </p>
-            <form onSubmit={(e) =>handleSubmit(e, track.id)}>
+            
             <div className='App'>
-            {[...Array(5)].map((star , index) => {
-                  const currentRating = index + 1;
-                  return (
+            {[1,2,3,4,5].map((star) => (
                     <label>
                       <input 
                       type='radio' 
                       name='rating' 
-                      value={currentRating}
-                      onClick={()=> setRating(currentRating)}
+                      value={star}
+                      onClick={(e)=> {setRating(star); submitHandler(e, track.id) }}
                       />
                       <FaStar
                        className='star' 
                        size={35}
-                       color={currentRating <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
-                       onMouseEnter={() => setHover(currentRating)}
+                       color={star <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
+                       onMouseEnter={() => setHover(star)}
                        onMouseLeave={() => setHover(null)}
                        />
                     </label>
-                  )
-                })}
+                  ))}
                 </div>
 <h2>Рейтинг маршрута {rating}</h2>
-            </form>
+            
             <form onSubmit={(e) =>handleSubmit(e, track.id)}>
             
 

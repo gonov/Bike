@@ -40,12 +40,15 @@ addRouter.post('/comment', async (req, res) => {
     //   console.log(res.locals.user.id);
       try {
         // console.log(req.body, '123474746546546546');
-        if (!req.body.text) return res.status(500).json({ message: 'Empty title' });
+        if (!req.body.point) return res.status(500).json({ message: 'Empty title' });
         const newRating = await Rating.create({
           user_id: res.locals.user.id,
           ...req.body,
         });
-        res.json(newRating);
+        const ratings = await Rating.findAll({ where: { track_id: req.params.track_id }});
+        const ratingsMean = newRating.reduce((acc, curr) => acc + curr.point ,0) / ratings.length
+        // среднее вычислить и отправить
+        res.json(ratingsMean);
       } catch (error) {
         console.log(error);
         res.status(500).json(error);
