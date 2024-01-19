@@ -23,7 +23,7 @@ export default function ProfilePage({trackData, userData}) {
       </div>
         {trackData ? 
           <div className='container mt-3'>
-            <div className='track1'>
+            <div className='track2'>
             
               {trackData?.map((track) => (
                 <div key={track.id} className='row justify-content-center'>

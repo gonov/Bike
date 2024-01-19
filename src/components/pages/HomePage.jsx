@@ -13,7 +13,7 @@ export default function HomePage({tracks, user}) {
               {track?.img && <img src={track?.img} className="card-img-top" alt={track?.title} />}
               <div className="card-body">
                 <h5 className="card-title">
-                 <a href={`/${track.id}`}>{track?.title}</a> 
+                 <a href={`/tracks/${track.id}`}>{track?.title}</a> 
                </h5>
                 <p className="card-text">
                   City: {track?.city}
