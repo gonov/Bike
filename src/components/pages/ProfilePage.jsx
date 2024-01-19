@@ -3,6 +3,16 @@ import AddModal from '../ui/AddModal';
 
 export default function ProfilePage({trackData, userData}) {
   const [curElement, setCurElement] = useState({});
+  const [allTracks, setAllTracks] = useState(trackData)
+  
+  const deleteHandler = async (id) => {
+    try {
+      await fetch (`/api/profile/track/${id}`, {method: "DELETE" });
+      setAllTracks((prev) => prev.filter((el) => el.id !== id))
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className="d-flex flex-column justify-content-center">
@@ -23,15 +33,15 @@ export default function ProfilePage({trackData, userData}) {
       </div>
         {trackData ? 
           <div className='container mt-3'>
-            <div className='track1'>
+            <div className='track1c mt-3'>
             
-              {trackData?.map((track) => (
+              {allTracks?.map((track) => (
                 <div key={track.id} className='row justify-content-center'>
                   <div className='col-8'> 
                     <div className="d-flex flex-row justify-content-between">
                       
                       {track?.img && <img src={track?.img} className="card-img-top" alt={track?.title} />}
-                        <div className="card-body">
+                        <div className="card-body mt-3">
                           <p className="card-text m-0"> Name: {track?.title}</p>
                           <p className="card-text  m-0"> City: {track?.city}</p>
                           <p className="card-text  m-0"> Start: {track?.start}</p>
@@ -40,7 +50,7 @@ export default function ProfilePage({trackData, userData}) {
                         <div className="d-grid gap-2 d-md-block">
                         <button onClick={() => setCurElement(track)} type="button" className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         edit</button>
-                        <button className="btn btn-danger" type="button">delete</button>
+                        <button onClick={() =>deleteHandler(track?.id)} className="btn btn-danger" type="button">delete</button>
                       </div>
                     </div>
                   </div>
