@@ -45,7 +45,7 @@ export default function HomePage({tracks, user}) {
       <form onSubmit={(event) => submitHandler(event)}>
       {tracks?.map((track) => (
         <div key={track.id} className='row justify-content-center'>
-          <div className='col-8'> 
+          <div className='col-8 mb-3'> 
             <div className="card">
               {track?.img && <img src={track?.img} className="card-img-top" alt={track?.title} />}
               <div className="card-body">

@@ -34,12 +34,12 @@ export default function ProfilePage({trackData, userData}) {
         {trackData ? 
           <div className='container mt-3'>
 
-            <div className='track1c mt-3'>
+            <div className='track1c mb-3'>
 
             
               {allTracks?.map((track) => (
                 <div key={track.id} className='row justify-content-center'>
-                  <div className='col-8'> 
+                  <div className='col-8 card mb-3'> 
                     <div className="d-flex flex-row justify-content-between">
                       
                       {track?.img && <img src={track?.img} className="card-img-top" alt={track?.title} />}
