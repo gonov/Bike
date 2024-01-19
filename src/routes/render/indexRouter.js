@@ -28,6 +28,7 @@ router.get('/profile/:userId', async (req, res) => {
   }
 });
 
+
 // на удаление 1 трэка
 router.delete('/api/profile/track/:id', async (req,res) => {
   await Track.destroy({where: {id:req.params.id} });
@@ -49,7 +50,8 @@ const {id} = req.params;
   res.sendStatus(200)
 })
 
-router.get('/:track_id', async (req, res) => {
+router.get('/tracks/:track_id', async (req, res) => {
+
     console.log({reqparams: req.params})
     const tracks = await Track.findAll({ where: { id: req.params.track_id }});
     const comments = await Comment.findAll({where: { track_id: req.params.track_id }})

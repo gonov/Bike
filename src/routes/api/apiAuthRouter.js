@@ -58,6 +58,10 @@ router.post('/login', async (req, res) => {
     .sendStatus(200);
 });
 
+router.get('/logout', (req, res) => {
+  res.clearCookie('accessToken').clearCookie('refreshToken').redirect('/')
+});
+
 
 
 

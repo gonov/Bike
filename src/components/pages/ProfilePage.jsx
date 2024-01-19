@@ -33,7 +33,9 @@ export default function ProfilePage({trackData, userData}) {
       </div>
         {trackData ? 
           <div className='container mt-3'>
+
             <div className='track1c mt-3'>
+
             
               {allTracks?.map((track) => (
                 <div key={track.id} className='row justify-content-center'>
