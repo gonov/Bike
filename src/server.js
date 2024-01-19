@@ -36,6 +36,7 @@ app.use(resLocals);
 
 app.use('/', indexRouter);
 app.use('/auth', checkNoAuth, authRouter);
+
 app.use('/api/add', apiAddRouter)
 
 
