@@ -1,5 +1,5 @@
 import express from 'express';
-import { Track, Comment } from '../../../db/models';
+import { Track, Comment, Rating } from '../../../db/models';
 
 const addRouter = express.Router();
 
@@ -35,5 +35,21 @@ addRouter.post('/comment', async (req, res) => {
       res.status(500).json(error);
     }
   });
+
+  addRouter.post('/rating', async (req, res) => {
+    //   console.log(res.locals.user.id);
+      try {
+        // console.log(req.body, '123474746546546546');
+        if (!req.body.text) return res.status(500).json({ message: 'Empty title' });
+        const newRating = await Rating.create({
+          user_id: res.locals.user.id,
+          ...req.body,
+        });
+        res.json(newRating);
+      } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+      }
+    });
 
 export default addRouter;

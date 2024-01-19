@@ -1,9 +1,10 @@
-import React, { useEffect} from 'react';
+import React, { useEffect, useState} from 'react';
+
 
 import OneTrackCard from '../ui/OneTrackCard';
 
 function OneTrackPage({ tracks, comments, ratings }) {
-  console.log({comments})
+  const [comment, setComment] = useState(null)
  
   useEffect(() => {
     const script = document.createElement('script');
@@ -49,7 +50,7 @@ function OneTrackPage({ tracks, comments, ratings }) {
     });
     if (response.status === 200) {
    
-        window.location.href = '/';
+        window.location.href = `/tracks/${trackId}`;
      
     }
   };
@@ -61,7 +62,7 @@ function OneTrackPage({ tracks, comments, ratings }) {
         {tracks?.map((track) => (
           <div key={track.id} className='row justify-content-center'>
             <div className='col-8'> 
-              <OneTrackCard track={track} handleSubmit={handleSubmit} comments={comments}/>
+              <OneTrackCard const track={track} handleSubmit={handleSubmit} comments={comments}/>
               
             </div>
             

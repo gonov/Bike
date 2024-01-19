@@ -1,11 +1,48 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios'
 
 export default function HomePage({tracks, user}) {
-  console.log({tracks})
+  const [allTracks, setAllTracks] = useState(tracks);
+  const [input, setInput] = useState('');
+
+  useEffect(() => {
+    const time = setTimeout(() => {
+      axios(`/api/tracks/search?filter=${input}`).then(({ data }) => setAllTracks(data));
+    }, 800);
+
+    return () => {
+      clearTimeout(time);
+    };
+  }, [input]);
+
+  const submitHandler = async (event) => {
+    event.preventDefault();
+    const response = await fetch('/api/dolphins', {
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify(input),
+    });
+    const data = await response.json();
+    setAllTracks((prev) => [data, ...prev]);
+    setInput({ name: '', img: '' });
+  };
+
+
+  const changeHandler = (e) => {
+    setInput(e.target.value);
+  };
+
+
   return (
     <div className='container'>
+
+<br />
+
+<input name="filter" type="text" value={input} onChange={changeHandler} />
+
+<br />
       home
-   
+      <form onSubmit={(event) => submitHandler(event)}>
       {tracks?.map((track) => (
         <div key={track.id} className='row justify-content-center'>
           <div className='col-8'> 
@@ -32,6 +69,7 @@ export default function HomePage({tracks, user}) {
           </div>
         </div>
       ))}
+      </form>
     </div>
 
   );
