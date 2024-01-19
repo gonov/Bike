@@ -13,6 +13,14 @@
     display: none !important;
 }
 
+input[type=radio]{
+    display: none;
+}
+
+.star{
+    cursor: pointer;
+}
+
 /* [class*="ground-pane"]{
     filter: grayscale(0)
 } */
